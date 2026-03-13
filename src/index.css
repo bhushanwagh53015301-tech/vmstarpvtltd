@@ -1,0 +1,268 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 33% 97%;
+    --foreground: 213 50% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 50% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 50% 15%;
+
+    --primary: 213 68% 14%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 152 84% 33%;
+    --secondary-foreground: 0 0% 100%;
+
+    --accent: 28 100% 50%;
+    --accent-foreground: 0 0% 100%;
+
+    --muted: 216 33% 93%;
+    --muted-foreground: 213 20% 45%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 25% 88%;
+    --input: 214 25% 88%;
+    --ring: 213 68% 14%;
+
+    --radius: 0.625rem;
+
+    --navy: 213 68% 14%;
+    --navy-light: 213 50% 25%;
+    --emerald: 152 84% 33%;
+    --emerald-light: 152 60% 45%;
+    --orange: 28 100% 50%;
+    --orange-light: 28 100% 60%;
+    --cream: 40 33% 96%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer components {
+  .section-padding {
+    @apply px-4 py-16 md:px-8 md:py-24 lg:px-16;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .gradient-navy {
+    background: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 100%);
+  }
+
+  .gradient-emerald {
+    background: linear-gradient(135deg, hsl(var(--emerald)) 0%, hsl(var(--emerald-light)) 100%);
+  }
+
+  .gradient-accent {
+    background: linear-gradient(135deg, hsl(var(--orange)) 0%, hsl(var(--orange-light)) 100%);
+  }
+
+  .text-gradient-navy {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--navy-light)) 100%);
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+  .btn-glow::after {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(circle at center, rgba(255,255,255,0.3) 0%, transparent 70%);
+  }
+  .btn-glow:hover::after {
+    @apply opacity-100;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hero-overlay {
+    background: linear-gradient(135deg, hsla(213, 68%, 14%, 0.85) 0%, hsla(213, 50%, 25%, 0.7) 100%);
+  }
+
+  .ops-showcase {
+    @apply relative overflow-hidden bg-[#f6f8f7];
+  }
+
+  .ops-showcase::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 25%, rgba(19, 79, 48, 0.08), transparent 38%),
+      radial-gradient(circle at 80% 15%, rgba(0, 82, 204, 0.06), transparent 30%),
+      linear-gradient(180deg, #f6f8f7 0%, #f4f6f8 100%);
+    pointer-events: none;
+  }
+
+  .ops-header {
+    @apply relative z-10 max-w-4xl mx-auto text-center mb-12 md:mb-16;
+  }
+
+  .ops-kicker {
+    @apply text-sm md:text-xl font-extrabold uppercase tracking-wide text-[#f5b000];
+  }
+
+  .ops-title {
+    @apply mt-2 text-2xl md:text-5xl font-bold text-foreground;
+  }
+
+  .ops-copy {
+    @apply mt-4 text-muted-foreground text-base md:text-xl leading-relaxed max-w-3xl mx-auto;
+  }
+
+  .ops-visual-wrap {
+    @apply relative z-10 max-w-6xl mx-auto min-h-[420px] md:min-h-[680px];
+  }
+
+  .ops-ring {
+    @apply absolute left-1/2 -translate-x-1/2 rounded-full border border-emerald-300/40 pointer-events-none z-0;
+  }
+
+  .ops-ring-1 {
+    width: min(1150px, 96vw);
+    height: min(1150px, 96vw);
+    top: -360px;
+  }
+
+  .ops-ring-2 {
+    width: min(820px, 80vw);
+    height: min(820px, 80vw);
+    top: -210px;
+  }
+
+  .ops-card {
+    @apply absolute bg-white rounded-xl shadow-xl p-4 md:p-5 z-30;
+  }
+
+  .ops-card h4 {
+    @apply font-heading text-foreground font-bold text-sm md:text-base mb-1;
+  }
+
+  .ops-card p {
+    @apply text-xs md:text-sm text-muted-foreground;
+  }
+
+  .ops-card-left {
+    @apply hidden md:block top-[42%] left-[10%] w-[260px];
+  }
+
+  .ops-card-right {
+    @apply hidden md:block top-[12%] left-1/2 -translate-x-1/2 w-[400px];
+  }
+
+  .ops-card-bottom {
+    @apply hidden md:block top-[54%] right-[9%] w-[300px];
+  }
+
+  .ops-main-image {
+    @apply absolute w-[80%] md:w-[48%] max-w-[520px] h-[340px] md:h-[520px] object-contain object-center drop-shadow-[0_24px_32px_rgba(0,0,0,0.18)];
+    left: 52%;
+    bottom: 72px;
+    transform: translateX(-50%);
+    z-index: 25;
+  }
+
+  .ops-dashboard {
+    @apply hidden;
+  }
+
+  .ops-dashboard::before {
+    content: '';
+    @apply absolute left-0 right-0 top-0 h-11 bg-slate-100 rounded-t-xl;
+  }
+
+  @media (max-width: 768px) {
+    .ops-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .ops-kicker {
+      font-size: 0.95rem;
+      line-height: 1.35;
+    }
+
+    .ops-copy {
+      font-size: 1.02rem;
+      line-height: 1.85;
+      max-width: 92%;
+    }
+
+    .ops-visual-wrap {
+      min-height: 290px;
+    }
+
+    .ops-ring-1 {
+      width: min(620px, 150vw);
+      height: min(620px, 150vw);
+      top: -245px;
+    }
+
+    .ops-ring-2 {
+      width: min(470px, 120vw);
+      height: min(470px, 120vw);
+      top: -155px;
+    }
+
+    .ops-main-image {
+      width: 72%;
+      height: 260px;
+      left: 50%;
+      bottom: 0;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
