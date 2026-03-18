@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Phone, Mail, MapPin } from 'lucide-react';
+import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import vmLogo from '@/assets/vm-logo.png';
 
@@ -27,6 +27,7 @@ const Footer = () => {
               <Link to="/" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">{t.nav.home}</Link>
               <Link to="/about" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">{t.nav.about}</Link>
               <Link to="/esg" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">{t.nav.esg}</Link>
+              <Link to="/blog" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">{t.nav.blog}</Link>
               <Link to="/contact" className="text-sm text-primary-foreground/70 hover:text-accent transition-colors">{t.nav.contact}</Link>
             </nav>
           </div>
@@ -54,6 +55,14 @@ const Footer = () => {
               </a>
               <a href="mailto:vmstarpvtltd@gmail.com" className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-accent transition-colors">
                 <Mail className="w-4 h-4 shrink-0" /> vmstarpvtltd@gmail.com
+              </a>
+              <a
+                href="https://www.facebook.com/vmstarprivatelimited/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-sm text-primary-foreground/70 hover:text-accent transition-colors"
+              >
+                <Facebook className="w-4 h-4 shrink-0" /> Facebook
               </a>
               <div className="flex items-start gap-2 text-sm text-primary-foreground/70">
                 <MapPin className="w-4 h-4 shrink-0 mt-0.5" />

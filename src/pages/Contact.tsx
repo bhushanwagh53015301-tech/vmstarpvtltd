@@ -3,31 +3,48 @@ import { Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Layout from '@/components/Layout';
+import Seo from '@/components/Seo';
 
 const Contact = () => {
   const { t } = useLanguage();
-  useScrollAnimation();
-  const whatsappNumber = '917844864486';
+  useScrollAnimation({ blur: false });
 
   const [form, setForm] = useState({
     name: '',
     mobileNumber: '',
     companyName: '',
     location: '',
+    serviceType: '',
     guardsRequired: '',
     serviceDuration: '',
     message: '',
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [joinForm, setJoinForm] = useState({
     name: '',
     address: '',
+    role: '',
     phoneNumber: '',
     age: '',
   });
   const [joinErrors, setJoinErrors] = useState<Record<string, string>>({});
   const [joinSubmitted, setJoinSubmitted] = useState(false);
+  const [isJoinSubmitting, setIsJoinSubmitting] = useState(false);
+
+  const whatsappNumber = '917844864486';
+  const emailRecipient = 'vmstarpvtltd@gmail.com';
+
+  const openWhatsApp = (message: string) => {
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+  const openEmail = (subject: string, body: string) => {
+    const mailtoUrl = `mailto:${emailRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(mailtoUrl, '_blank');
+  };
 
   const validate = () => {
     const errs: Record<string, string> = {};
@@ -35,6 +52,7 @@ const Contact = () => {
     if (!/^[0-9]{10}$/.test(form.mobileNumber)) errs.mobileNumber = 'Enter a valid 10-digit mobile number';
     if (!form.companyName.trim()) errs.companyName = 'Required';
     if (!form.location.trim()) errs.location = 'Required';
+    if (!form.serviceType.trim()) errs.serviceType = 'Required';
     if (!form.guardsRequired.trim() || Number(form.guardsRequired) < 1) errs.guardsRequired = 'Enter a valid number';
     if (!form.serviceDuration.trim()) errs.serviceDuration = 'Required';
     if (!form.message.trim()) errs.message = 'Required';
@@ -42,34 +60,36 @@ const Contact = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const openWhatsApp = (message: string) => {
-    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-    window.open(whatsappUrl, '_blank');
-  };
-
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
-      const message =
-        `New Contact Form Submission\n` +
+      setIsSubmitting(true);
+      const subject = 'New Quote Request - VM Star';
+      const body =
         `Name: ${form.name}\n` +
         `Mobile Number: ${form.mobileNumber}\n` +
         `Company Name: ${form.companyName}\n` +
         `Location: ${form.location}\n` +
+        `Service Type: ${form.serviceType}\n` +
         `Number of Guards Required: ${form.guardsRequired}\n` +
-        `Duration of Service: ${form.serviceDuration}\n` +
+        `Service Start Date: ${form.serviceDuration}\n` +
         `Message: ${form.message}`;
-      openWhatsApp(message);
+
+      openWhatsApp(`New Quote Request\n${body}`);
+      openEmail(subject, body);
+
       setSubmitted(true);
       setForm({
         name: '',
         mobileNumber: '',
         companyName: '',
         location: '',
+        serviceType: '',
         guardsRequired: '',
         serviceDuration: '',
         message: '',
       });
+      setIsSubmitting(false);
     }
   };
 
@@ -86,29 +106,42 @@ const Contact = () => {
   const handleJoinSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (validateJoinForm()) {
-      const joinMessage =
-        `New Join Form Submission\n` +
+      setIsJoinSubmitting(true);
+      const subject = 'New Join Form - VM Star';
+      const body =
         `Name: ${joinForm.name}\n` +
         `Address: ${joinForm.address}\n` +
+        `Position Applied For: ${joinForm.role}\n` +
         `Phone Number: ${joinForm.phoneNumber}\n` +
         `Age: ${joinForm.age}`;
-      openWhatsApp(joinMessage);
+
+      openWhatsApp(`New Join Form\n${body}`);
+      openEmail(subject, body);
+
       setJoinSubmitted(true);
       setJoinForm({
         name: '',
         address: '',
+        role: '',
         phoneNumber: '',
         age: '',
       });
+      setIsJoinSubmitting(false);
     }
   };
 
   return (
     <Layout>
-      <section className="gradient-navy pt-32 pb-20 px-4">
-        <div className="container-custom text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">{t.contact.title}</h1>
-          <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">{t.contact.subtitle}</p>
+      <Seo
+        title="Contact VM Star Private Limited | Get a Quote"
+        description="Request a consultation for security, housekeeping, manpower or bouncer services across Maharashtra."
+      />
+      <section className="gradient-navy px-4">
+        <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center">
+          <div className="translate-y-10 text-center">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">{t.contact.title}</h1>
+            <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">{t.contact.subtitle}</p>
+          </div>
         </div>
       </section>
 
@@ -146,6 +179,23 @@ const Contact = () => {
                       />
                       {joinErrors.address && <span className="text-xs text-destructive mt-1">{joinErrors.address}</span>}
                     </div>
+                    
+                    <div className="sm:col-span-2">
+                      <label className="block text-sm font-medium text-foreground mb-1.5">Position Applied For *</label>
+                      <select
+                        value={joinForm.role}
+                        onChange={e => setJoinForm(p => ({ ...p, role: e.target.value }))}
+                        className={`w-full px-4 py-3 rounded-lg border ${joinErrors.role ? 'border-destructive' : 'border-border'} bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
+                      >
+                        <option value="">Select a role</option>
+                        <option value="Housekeeping">Housekeeping</option>
+                        <option value="Ward Boy">Ward Boy</option>
+                        <option value="Ward Mavshi">Ward Mavshi</option>
+                        <option value="Security Guard">Security Guard</option>
+                      </select>
+                      {joinErrors.role && <span className="text-xs text-destructive mt-1">{joinErrors.role}</span>}
+                    </div>
+
                   </div>
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
@@ -176,7 +226,11 @@ const Contact = () => {
                       {joinErrors.age && <span className="text-xs text-destructive mt-1">{joinErrors.age}</span>}
                     </div>
                   </div>
-                  <button type="submit" className="w-full sm:w-auto px-8 py-3.5 rounded-lg gradient-accent text-accent-foreground font-semibold btn-glow transition-transform hover:scale-105">
+                  <button
+                    type="submit"
+                    disabled={isJoinSubmitting}
+                    className="w-full sm:w-auto px-8 py-3.5 rounded-lg gradient-accent text-accent-foreground font-semibold btn-glow transition-transform hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
                     सबमिट करा
                   </button>
                 </form>
@@ -240,6 +294,20 @@ const Contact = () => {
                     {errors.location && <span className="text-xs text-destructive mt-1">{errors.location}</span>}
                   </div>
                 </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Service Type *</label>
+                  <select
+                    value={form.serviceType}
+                    onChange={e => setForm(p => ({ ...p, serviceType: e.target.value }))}
+                    className={`w-full px-4 py-3 rounded-lg border ${errors.serviceType ? 'border-destructive' : 'border-border'} bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
+                  >
+                    <option value="">Select a service</option>
+                    <option value="Security">Security</option>
+                    <option value="Housekeeping">Housekeeping</option>
+                    <option value="Bouncer">Bouncer</option>
+                  </select>
+                  {errors.serviceType && <span className="text-xs text-destructive mt-1">{errors.serviceType}</span>}
+                </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-1.5">Number of Guards Required</label>
@@ -253,9 +321,9 @@ const Contact = () => {
                     {errors.guardsRequired && <span className="text-xs text-destructive mt-1">{errors.guardsRequired}</span>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Duration of Service</label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Service Start Date</label>
                     <input
-                      type="text"
+                      type="date"
                       value={form.serviceDuration}
                       onChange={e => setForm(p => ({ ...p, serviceDuration: e.target.value }))}
                       className={`w-full px-4 py-3 rounded-lg border ${errors.serviceDuration ? 'border-destructive' : 'border-border'} bg-background text-foreground focus:ring-2 focus:ring-accent focus:border-transparent outline-none transition-all`}
@@ -273,8 +341,12 @@ const Contact = () => {
                   />
                   {errors.message && <span className="text-xs text-destructive mt-1">{errors.message}</span>}
                 </div>
-                <button type="submit" className="w-full sm:w-auto px-8 py-3.5 rounded-lg gradient-accent text-accent-foreground font-semibold btn-glow transition-transform hover:scale-105">
-                  {t.contact.send}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full sm:w-auto px-8 py-3.5 rounded-lg gradient-accent text-accent-foreground font-semibold btn-glow transition-transform hover:scale-105 disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? 'Sending...' : t.contact.send}
                 </button>
               </form>
             )}
@@ -304,12 +376,13 @@ const Contact = () => {
             {/* Map */}
             <div className="rounded-xl overflow-hidden border border-border h-64">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3752.2!2d75.3!3d19.87!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDUyJzEyLjAiTiA3NcKwMTgnMDAuMCJF!5e0!3m2!1sen!2sin!4v1!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!4v1773739580965!6m8!1m7!1sBO0Jy4cw1_aQHjC-OOz8_g!2m2!1d19.84785033320317!2d75.35092994026054!3f310.41!4f-5.590000000000003!5f1.1924812503605782"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
                 title="VM Star Location"
               />
             </div>

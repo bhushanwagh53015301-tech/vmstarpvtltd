@@ -1,12 +1,16 @@
 import { useEffect } from 'react';
 
-export const useScrollAnimation = () => {
+export const useScrollAnimation = (options?: { blur?: boolean }) => {
   useEffect(() => {
+    const applyBlur = options?.blur !== false;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
+            if (applyBlur) {
+              entry.target.classList.add('blur-reveal');
+            }
           }
         });
       },
@@ -18,5 +22,5 @@ export const useScrollAnimation = () => {
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [options?.blur]);
 };

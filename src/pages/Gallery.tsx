@@ -1,5 +1,6 @@
 import Layout from '@/components/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import Seo from '@/components/Seo';
 
 const galleryModules = {
   ...(import.meta.glob('../assets/Gallery/*.{webp,WEBP,jpg,JPG,jpeg,JPEG,png,PNG}', {
@@ -44,20 +45,26 @@ const housekeepingImages = galleryItems.filter((item) => item.name.startsWith('h
 const securityImages = galleryItems.filter((item) => item.name.startsWith('security'));
 
 const Gallery = () => {
-  useScrollAnimation();
+  useScrollAnimation({ blur: false });
 
   const hasImages = galleryItems.length > 0;
 
   return (
     <Layout>
-      <section className="gradient-navy pt-32 pb-20 px-4">
-        <div className="container-custom text-center">
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
-            Gallery
-          </h1>
-          <p className="text-primary-foreground/75 text-lg max-w-3xl mx-auto">
-            Moments from our security and facility operations across Maharashtra.
-          </p>
+      <Seo
+        title="Gallery | VM Star Private Limited"
+        description="Explore photos of VM Star security and housekeeping operations across Maharashtra."
+      />
+      <section className="gradient-navy px-4">
+        <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center">
+          <div className="translate-y-10 text-center">
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
+              Gallery
+            </h1>
+            <p className="text-primary-foreground/75 text-lg max-w-3xl mx-auto">
+              Moments from our security and facility operations across Maharashtra.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -71,8 +78,8 @@ const Gallery = () => {
                 <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6 text-center animate-on-scroll">
                   Housekeeping
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {housekeepingImages.map((item, index) => (
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-grid animate-on-scroll">
+                  {housekeepingImages.slice(0, -1).map((item, index) => (
                     <div key={item.src}>
                       <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm card-hover transition-transform duration-300 ease-out hover:scale-[1.01]">
                         <img
@@ -92,7 +99,7 @@ const Gallery = () => {
                 <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-6 text-center animate-on-scroll">
                   Security
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 stagger-grid animate-on-scroll">
                   {securityImages.map((item, index) => (
                     <div key={item.src}>
                       <div className="overflow-hidden rounded-xl border border-border bg-card shadow-sm card-hover transition-transform duration-300 ease-out hover:scale-[1.01]">

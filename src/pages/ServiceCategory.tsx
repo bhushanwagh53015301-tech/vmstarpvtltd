@@ -3,9 +3,10 @@ import { CheckCircle, ChevronRight } from 'lucide-react';
 import Layout from '@/components/Layout';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { serviceCategoryMap } from '@/lib/serviceCategories';
+import Seo from '@/components/Seo';
 
 const ServiceCategory = () => {
-  useScrollAnimation();
+  useScrollAnimation({ blur: false });
   const { slug } = useParams();
   const service = slug ? serviceCategoryMap[slug] : undefined;
 
@@ -13,19 +14,25 @@ const ServiceCategory = () => {
 
   return (
     <Layout>
-      <section className="gradient-navy pt-32 pb-20 px-4">
-        <div className="container-custom">
-          <div className="text-primary-foreground/70 text-sm flex items-center gap-2 mb-5">
-            <Link to="/services" className="hover:text-accent transition-colors">
-              Services
-            </Link>
-            <ChevronRight className="w-4 h-4" />
-            <span>{service.title}</span>
+      <Seo
+        title={`${service.title} | VM Star Private Limited`}
+        description={service.summary}
+      />
+      <section className="gradient-navy px-4">
+        <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col justify-center">
+          <div className="translate-y-10">
+            <div className="text-primary-foreground/70 text-sm flex items-center gap-2 mb-5">
+              <Link to="/services" className="hover:text-accent transition-colors">
+                Services
+              </Link>
+              <ChevronRight className="w-4 h-4" />
+              <span>{service.title}</span>
+            </div>
+            <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
+              {service.title}
+            </h1>
+            <p className="text-primary-foreground/80 text-lg max-w-3xl">{service.summary}</p>
           </div>
-          <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
-            {service.title}
-          </h1>
-          <p className="text-primary-foreground/80 text-lg max-w-3xl">{service.summary}</p>
         </div>
       </section>
 
