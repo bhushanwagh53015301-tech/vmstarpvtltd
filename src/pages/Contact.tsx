@@ -34,16 +34,14 @@ const Contact = () => {
   const [isJoinSubmitting, setIsJoinSubmitting] = useState(false);
 
   const whatsappNumber = '917844864486';
-  const emailRecipient = 'vmstarpvtltd@gmail.com';
+  const quoteFormEndpoint =
+    'https://script.google.com/macros/s/AKfycbxFpSgi4t3J9sBeVus-Rr44ylZVAy7Pa0uPHcJmMjsBf7swkssamKP-oRLZe5jUgqGa7Q/exec';
+  const joinFormEndpoint =
+    'https://script.google.com/macros/s/AKfycbwUSWWyIQKc3rHYLLa4YDymb3f2gmxCcMtsd2R61NLpz8SYRv3UeRdumKED1RWA3Jo/exec';
 
   const openWhatsApp = (message: string) => {
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
-  };
-
-  const openEmail = (subject: string, body: string) => {
-    const mailtoUrl = `mailto:${emailRecipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(mailtoUrl, '_blank');
   };
 
   const validate = () => {
@@ -60,36 +58,42 @@ const Contact = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (validate()) {
       setIsSubmitting(true);
-      const subject = 'New Quote Request - VM Star';
-      const body =
-        `Name: ${form.name}\n` +
-        `Mobile Number: ${form.mobileNumber}\n` +
-        `Company Name: ${form.companyName}\n` +
-        `Location: ${form.location}\n` +
-        `Service Type: ${form.serviceType}\n` +
-        `Number of Guards Required: ${form.guardsRequired}\n` +
-        `Service Start Date: ${form.serviceDuration}\n` +
-        `Message: ${form.message}`;
+      try {
+        const quoteBody = new URLSearchParams({
+          name: form.name,
+          mobileNumber: form.mobileNumber,
+          companyName: form.companyName,
+          location: form.location,
+          serviceType: form.serviceType,
+          guardsRequired: form.guardsRequired,
+          serviceDuration: form.serviceDuration,
+          message: form.message,
+        });
 
-      openWhatsApp(`New Quote Request\n${body}`);
-      openEmail(subject, body);
+        await fetch(quoteFormEndpoint, {
+          method: 'POST',
+          body: quoteBody,
+          mode: 'no-cors',
+        });
 
-      setSubmitted(true);
-      setForm({
-        name: '',
-        mobileNumber: '',
-        companyName: '',
-        location: '',
-        serviceType: '',
-        guardsRequired: '',
-        serviceDuration: '',
-        message: '',
-      });
-      setIsSubmitting(false);
+        setSubmitted(true);
+        setForm({
+          name: '',
+          mobileNumber: '',
+          companyName: '',
+          location: '',
+          serviceType: '',
+          guardsRequired: '',
+          serviceDuration: '',
+          message: '',
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     }
   };
 
@@ -103,30 +107,36 @@ const Contact = () => {
     return Object.keys(errs).length === 0;
   };
 
-  const handleJoinSubmit = (e: FormEvent) => {
+  const handleJoinSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (validateJoinForm()) {
       setIsJoinSubmitting(true);
-      const subject = 'New Join Form - VM Star';
-      const body =
-        `Name: ${joinForm.name}\n` +
-        `Address: ${joinForm.address}\n` +
-        `Position Applied For: ${joinForm.role}\n` +
-        `Phone Number: ${joinForm.phoneNumber}\n` +
-        `Age: ${joinForm.age}`;
+      try {
+        const joinBody = new URLSearchParams({
+          name: joinForm.name,
+          address: joinForm.address,
+          role: joinForm.role,
+          phoneNumber: joinForm.phoneNumber,
+          age: joinForm.age,
+        });
 
-      openWhatsApp(`New Join Form\n${body}`);
-      openEmail(subject, body);
+        await fetch(joinFormEndpoint, {
+          method: 'POST',
+          body: joinBody,
+          mode: 'no-cors',
+        });
 
-      setJoinSubmitted(true);
-      setJoinForm({
-        name: '',
-        address: '',
-        role: '',
-        phoneNumber: '',
-        age: '',
-      });
-      setIsJoinSubmitting(false);
+        setJoinSubmitted(true);
+        setJoinForm({
+          name: '',
+          address: '',
+          role: '',
+          phoneNumber: '',
+          age: '',
+        });
+      } finally {
+        setIsJoinSubmitting(false);
+      }
     }
   };
 
@@ -321,7 +331,7 @@ const Contact = () => {
                     {errors.guardsRequired && <span className="text-xs text-destructive mt-1">{errors.guardsRequired}</span>}
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Service Start Date</label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Service Date</label>
                     <input
                       type="date"
                       value={form.serviceDuration}
