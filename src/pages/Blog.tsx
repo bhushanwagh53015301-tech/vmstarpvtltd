@@ -27,13 +27,13 @@ const Blog = () => (
       <div className="container-custom grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         {blogPosts.map(post => (
           <article key={post.slug} className="group bg-card border border-border rounded-3xl overflow-hidden shadow-lg">
-            <div className="relative h-44">
+            <div className="relative h-44 bg-slate-100">
               <img
                 src={post.image}
                 alt={post.title}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover"
+                className="h-full w-full object-contain"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
               <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground">

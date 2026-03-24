@@ -28,8 +28,8 @@ const BlogPost = () => {
     <Layout>
       <Seo title={`${post.title} | VM Star Blog`} description={post.excerpt} type="article" />
       <section className="gradient-navy px-4">
-        <div className="container-custom max-w-3xl min-h-[240px] md:min-h-[280px] flex flex-col justify-center">
-          <div className="translate-y-10">
+        <div className="container-custom max-w-3xl min-h-[240px] md:min-h-[280px] py-10 md:py-14 flex flex-col justify-center">
+          <div>
             <p className="text-primary-foreground/70 text-xs tracking-[0.3em] uppercase mb-4">Blog</p>
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground">{post.title}</h1>
             <div className="flex flex-wrap gap-3 text-xs text-primary-foreground/70 mt-4">
@@ -49,7 +49,8 @@ const BlogPost = () => {
               alt={post.title}
               loading="lazy"
               decoding="async"
-              className="w-full h-72 md:h-96 object-cover"
+              className="w-full h-72 md:h-96 object-cover object-top"
+              style={{ objectPosition: 'center -36px' }}
             />
           </div>
           {post.content.map((paragraph, index) => (

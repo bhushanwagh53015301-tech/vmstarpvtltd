@@ -1,5 +1,5 @@
 import { Shield, Sparkles, Users, Dumbbell, CheckCircle } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useLanguage } from '@/hooks/useLanguage';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Layout from '@/components/Layout';
@@ -12,6 +12,7 @@ import { serviceCategories } from '@/lib/serviceCategories';
 
 const Services = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   useScrollAnimation({ blur: false });
 
   const securityServiceOfferings = [
@@ -27,11 +28,16 @@ const Services = () => {
   ];
 
   const services = [
-    { icon: Shield, img: securityImg, ...t.services.security, benefits: securityServiceOfferings },
-    { icon: Sparkles, img: housekeepingImg, ...t.services.housekeeping },
-    { icon: Users, img: manpowerImg, ...t.services.manpower },
-    { icon: Dumbbell, img: bouncerImg, ...t.services.bouncer },
+    { slug: 'security-services', icon: Shield, img: securityImg, ...t.services.security, benefits: securityServiceOfferings },
+    { slug: 'housekeeping-services', icon: Sparkles, img: housekeepingImg, ...t.services.housekeeping },
+    { slug: 'manpower-services', icon: Users, img: manpowerImg, ...t.services.manpower },
+    { slug: 'bouncer-services', icon: Dumbbell, img: bouncerImg, ...t.services.bouncer },
   ];
+
+  const coreServicePages = serviceCategories.filter((item) =>
+    ['security-services', 'housekeeping-services', 'manpower-services', 'bouncer-services'].includes(item.slug),
+  );
+
   const metrics = [
     { label: 'Years in Operations', value: '10+' },
     { label: 'Active Workforce', value: '900+' },
@@ -45,6 +51,15 @@ const Services = () => {
     'Retail & Malls',
     'Educational Campuses',
   ];
+  const featuredCategorySlugs = [
+    'ifm-services',
+    'technical-services',
+    'facility-management-allied-services',
+    'floor-care-services',
+  ];
+  const featuredCategories = serviceCategories.filter((category) =>
+    featuredCategorySlugs.includes(category.slug),
+  );
 
   return (
     <Layout>
@@ -52,7 +67,7 @@ const Services = () => {
         title="Security, Housekeeping & Manpower Services | VM Star Private Limited"
         description="Explore security guards, housekeeping, manpower and bouncer services across Maharashtra. Customized facility solutions with trained staff."
       />
-      {/* Banner */}
+
       <section className="gradient-navy px-4">
         <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center">
           <div className="translate-y-10 text-center">
@@ -62,7 +77,58 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Trust strip */}
+      <section className="section-padding -mt-16 pb-8">
+        <div className="container-custom">
+          <div className="rounded-2xl border border-border bg-card/95 backdrop-blur p-6 md:p-8 shadow-xl animate-on-scroll">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5">
+              <div>
+                <p className="text-xs uppercase tracking-[0.3em] text-accent font-semibold">Service Pages</p>
+                <h2 className="font-heading text-2xl md:text-3xl font-bold text-foreground mt-2">
+                  Select a service from dropdown
+                </h2>
+                <p className="text-muted-foreground mt-2">
+                  Separate pages are available for Security, Housekeeping, Manpower, and Bouncer services.
+                </p>
+              </div>
+              <div className="w-full lg:w-[360px]">
+                <label htmlFor="service-page-select" className="sr-only">
+                  Select service page
+                </label>
+                <select
+                  id="service-page-select"
+                  defaultValue=""
+                  onChange={(e) => {
+                    const slug = e.target.value;
+                    if (slug) navigate(`/services/${slug}`);
+                  }}
+                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground"
+                >
+                  <option value="" disabled>
+                    Select a service page
+                  </option>
+                  {coreServicePages.map((item) => (
+                    <option key={item.slug} value={item.slug}>
+                      {item.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2">
+              {coreServicePages.map((item) => (
+                <Link
+                  key={item.slug}
+                  to={`/services/${item.slug}`}
+                  className="inline-flex rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground hover:bg-muted"
+                >
+                  {item.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="section-padding -mt-16">
         <div className="container-custom">
           <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr] items-center rounded-[28px] border border-border bg-background/90 p-6 md:p-10 shadow-2xl animate-on-scroll">
@@ -94,7 +160,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Service Highlights */}
       <section className="section-padding bg-card">
         <div className="container-custom">
           <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-stretch">
@@ -142,11 +207,10 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Service Cards */}
       <section className="section-padding">
         <div className="container-custom space-y-20">
           {services.map((svc, i) => (
-            <div key={i} className={`animate-on-scroll flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-10`}>
+            <div key={svc.slug} className={`animate-on-scroll flex flex-col ${i % 2 === 1 ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-10`}>
               <div className="w-full lg:w-1/2 relative group">
                 <img
                   src={svc.img}
@@ -170,7 +234,10 @@ const Services = () => {
                     </div>
                   ))}
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <Link to={`/services/${svc.slug}`} className="inline-flex items-center px-5 py-2.5 rounded-lg border border-border bg-background text-foreground font-semibold hover:bg-muted">
+                    View Service Page
+                  </Link>
                   <Link to="/contact#quote-form" className="inline-flex items-center px-5 py-2.5 rounded-lg gradient-accent text-accent-foreground font-semibold">
                     Request Service Quote
                   </Link>
@@ -178,6 +245,31 @@ const Services = () => {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="section-padding bg-card">
+        <div className="container-custom">
+          <div className="text-center mb-10 animate-on-scroll">
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">Primary Service Pages</h2>
+            <p className="text-muted-foreground max-w-3xl mx-auto">
+              Direct access to dedicated pages for Security, Housekeeping, Manpower, and Bouncer services.
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-grid animate-on-scroll">
+            {coreServicePages.map((category) => (
+              <div key={category.slug} className="rounded-xl border border-border bg-background p-6 card-hover">
+                <h3 className="font-heading text-xl font-bold text-foreground mb-2">{category.title}</h3>
+                <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{category.summary}</p>
+                <Link
+                  to={`/services/${category.slug}`}
+                  className="inline-flex items-center px-4 py-2 rounded-lg gradient-emerald text-secondary-foreground font-semibold text-sm"
+                >
+                  Open Page
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -191,7 +283,7 @@ const Services = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 stagger-grid animate-on-scroll">
-            {serviceCategories.map((category, index) => (
+            {featuredCategories.map((category, index) => (
               <div
                 key={category.slug}
                 className="animate-on-scroll rounded-xl border border-border bg-background p-6 card-hover"
@@ -218,7 +310,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Process */}
       <section className="section-padding">
         <div className="container-custom">
           <div className="text-center mb-12 animate-on-scroll">
@@ -242,7 +333,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Industries */}
       <section className="section-padding bg-card">
         <div className="container-custom text-center">
           <div className="animate-on-scroll">
@@ -258,7 +348,6 @@ const Services = () => {
           </div>
         </div>
       </section>
-
     </Layout>
   );
 };

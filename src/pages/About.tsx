@@ -1,4 +1,5 @@
-import { CheckCircle2, ClipboardCheck, ShieldCheck, Sparkles, Target } from 'lucide-react';
+import { CheckCircle2, ClipboardCheck, ShieldCheck, Sparkles, Target, Award, BookOpen, Globe } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import Layout from '@/components/Layout';
 import ownerImg from '@/assets/owner.png';
@@ -18,6 +19,36 @@ const About = () => {
     'Use of modern tools and eco-friendly practices',
     'Customized service solutions',
     'Strong focus on safety, hygiene, and client satisfaction',
+  ];
+  const certifications = [
+    {
+      title: 'ISO 9001/14001/45001',
+      desc: 'Quality, environmental, and occupational safety standards.',
+    },
+    {
+      title: 'PSARA Compliance',
+      desc: 'Audit-ready licensing with documented SOPs.',
+    },
+    {
+      title: 'Supervisor-Led Audits',
+      desc: 'Daily checks and monthly performance reviews.',
+    },
+  ];
+  const trainingModules = [
+    'Fire prevention and emergency response',
+    'First aid and incident reporting',
+    'Access control and visitor management',
+    'Housekeeping quality checklists',
+    'Equipment handling and safety drills',
+    'Customer etiquette and discipline',
+  ];
+  const locations = [
+    'Chhatrapati Sambhajinagar',
+    'Pune',
+    'Mumbai',
+    'Nashik',
+    'Nagpur',
+    'Solapur',
   ];
 
   return (
@@ -136,6 +167,81 @@ const About = () => {
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6">
+            <div className="animate-on-scroll rounded-2xl border border-border bg-card p-8 shadow-sm">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl gradient-emerald flex items-center justify-center">
+                  <Award className="w-6 h-6 text-secondary-foreground" />
+                </div>
+                <h3 className="font-heading text-xl font-bold text-foreground">Certifications & Compliance</h3>
+              </div>
+              <div className="grid gap-4">
+                {certifications.map((item) => (
+                  <div key={item.title} className="rounded-xl border border-border bg-background p-4">
+                    <div className="text-sm font-semibold text-foreground">{item.title}</div>
+                    <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="animate-on-scroll rounded-2xl border border-border bg-card p-8 shadow-sm card-hover">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 rounded-xl gradient-accent flex items-center justify-center">
+                  <BookOpen className="w-6 h-6 text-accent-foreground" />
+                </div>
+                <h3 className="font-heading text-xl font-bold text-foreground">Training & Capability</h3>
+              </div>
+              <ul className="space-y-3">
+                {trainingModules.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-muted-foreground leading-relaxed">
+                    <CheckCircle2 className="w-5 h-5 text-secondary shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="animate-on-scroll bg-card rounded-2xl p-8 border border-border shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 rounded-xl gradient-navy flex items-center justify-center">
+                <Globe className="w-6 h-6 text-secondary-foreground" />
+              </div>
+              <h3 className="font-heading text-xl font-bold text-foreground">Geographic Footprint</h3>
+            </div>
+            <p className="text-muted-foreground mb-4">
+              Multi-city coverage across Maharashtra with rapid response teams and on-ground supervisors.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              {locations.map((item) => (
+                <span key={item} className="rounded-full border border-border bg-background px-4 py-2 text-sm font-medium text-foreground">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="animate-on-scroll grid md:grid-cols-2 gap-6">
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover">
+              <h3 className="font-heading text-xl font-bold text-foreground mb-3">Media & Gallery</h3>
+              <p className="text-muted-foreground mb-5">
+                Browse on-site deployments, training sessions, and client coverage visuals.
+              </p>
+              <Link to="/gallery" className="inline-flex items-center px-5 py-2.5 rounded-lg gradient-emerald text-secondary-foreground font-semibold">
+                View Gallery
+              </Link>
+            </div>
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-sm card-hover">
+              <h3 className="font-heading text-xl font-bold text-foreground mb-3">Newsletter & Updates</h3>
+              <p className="text-muted-foreground mb-5">
+                Operational insights, compliance updates, and service improvements from our team.
+              </p>
+              <Link to="/blog" className="inline-flex items-center px-5 py-2.5 rounded-lg gradient-accent text-accent-foreground font-semibold">
+                Read Updates
+              </Link>
             </div>
           </div>
 

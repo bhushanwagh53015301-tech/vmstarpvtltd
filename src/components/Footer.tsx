@@ -13,7 +13,7 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <Link to="/" className="inline-flex items-center mb-4">
-              <img src={vmLogo} alt="VM Star Private Limited" className="h-14 md:h-16 w-auto" />
+              <img src={vmLogo} alt="VM Star Private Limited" className="h-16 md:h-20 w-auto" />
             </Link>
             <p className="text-primary-foreground/70 text-sm leading-relaxed">
               {t.footer.description}

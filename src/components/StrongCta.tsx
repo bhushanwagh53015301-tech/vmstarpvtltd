@@ -39,12 +39,6 @@ const StrongCta = () => {
                 Get a Free Consultation
               </Link>
               <Link
-                to="/services"
-                className="inline-flex items-center justify-center px-7 py-3 rounded-lg border border-border text-foreground font-semibold hover:bg-muted transition-colors"
-              >
-                View Service Packages
-              </Link>
-              <Link
                 to="/contact"
                 className="inline-flex items-center justify-center px-7 py-3 rounded-lg bg-foreground text-background font-semibold hover:opacity-90"
               >

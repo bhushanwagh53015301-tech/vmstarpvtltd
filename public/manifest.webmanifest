@@ -1,0 +1,21 @@
+{
+  "name": "VM Star Private Limited",
+  "short_name": "VM Star",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f7f9fb",
+  "theme_color": "#0d1f33",
+  "description": "Security, housekeeping, manpower and bouncer services across Maharashtra.",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
