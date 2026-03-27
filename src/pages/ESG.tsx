@@ -73,7 +73,7 @@ const ESG = () => {
       />
       <section className="gradient-navy px-4">
         <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center">
-          <div className="translate-y-10 text-center">
+          <div className="text-center">
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">{t.esg.title}</h1>
             <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">{t.esg.subtitle}</p>
           </div>

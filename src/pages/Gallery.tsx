@@ -57,7 +57,7 @@ const Gallery = () => {
       />
       <section className="gradient-navy px-4">
         <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col items-center justify-center">
-          <div className="translate-y-10 text-center">
+          <div className="text-center">
             <h1 className="font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
               Gallery
             </h1>

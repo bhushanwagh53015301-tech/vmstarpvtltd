@@ -20,7 +20,7 @@ const ServiceCategory = () => {
       />
       <section className="gradient-navy px-4">
         <div className="container-custom min-h-[260px] md:min-h-[300px] flex flex-col justify-center">
-          <div className="translate-y-10">
+          <div>
             <div className="text-primary-foreground/70 text-sm flex items-center gap-2 mb-5">
               <Link to="/services" className="hover:text-accent transition-colors">
                 Services
