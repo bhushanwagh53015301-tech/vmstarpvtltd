@@ -320,7 +320,7 @@ const Contact = () => {
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
-                    <label className="block text-sm font-medium text-foreground mb-1.5">Number of Guards Required</label>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Number of Manpower Required</label>
                     <input
                       type="number"
                       min="1"

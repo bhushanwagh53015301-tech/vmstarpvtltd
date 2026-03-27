@@ -17,11 +17,11 @@ const setMetaTag = (selector: string, attr: 'content' | 'href', value: string) =
     const isLink = selector.startsWith('link');
     const created = document.createElement(isLink ? 'link' : 'meta');
     if (isLink) {
-      const relMatch = selector.match(/rel=\"([^\"]+)\"/);
+      const relMatch = selector.match(/rel="([^"]+)"/);
       if (relMatch) created.setAttribute('rel', relMatch[1]);
     } else {
-      const nameMatch = selector.match(/name=\"([^\"]+)\"/);
-      const propMatch = selector.match(/property=\"([^\"]+)\"/);
+      const nameMatch = selector.match(/name="([^"]+)"/);
+      const propMatch = selector.match(/property="([^"]+)"/);
       if (nameMatch) created.setAttribute('name', nameMatch[1]);
       if (propMatch) created.setAttribute('property', propMatch[1]);
     }
@@ -36,16 +36,16 @@ const Seo = ({ title, description, image = logo, type = 'website' }: SeoProps) =
   useEffect(() => {
     const url = `${window.location.origin}${location.pathname}`;
     document.title = title;
-    setMetaTag('meta[name=\"description\"]', 'content', description);
-    setMetaTag('meta[property=\"og:title\"]', 'content', title);
-    setMetaTag('meta[name=\"twitter:title\"]', 'content', title);
-    setMetaTag('meta[property=\"og:description\"]', 'content', description);
-    setMetaTag('meta[name=\"twitter:description\"]', 'content', description);
-    setMetaTag('meta[property=\"og:image\"]', 'content', image);
-    setMetaTag('meta[name=\"twitter:image\"]', 'content', image);
-    setMetaTag('meta[property=\"og:type\"]', 'content', type);
-    setMetaTag('meta[property=\"og:url\"]', 'content', url);
-    setMetaTag('link[rel=\"canonical\"]', 'href', url);
+    setMetaTag('meta[name="description"]', 'content', description);
+    setMetaTag('meta[property="og:title"]', 'content', title);
+    setMetaTag('meta[name="twitter:title"]', 'content', title);
+    setMetaTag('meta[property="og:description"]', 'content', description);
+    setMetaTag('meta[name="twitter:description"]', 'content', description);
+    setMetaTag('meta[property="og:image"]', 'content', image);
+    setMetaTag('meta[name="twitter:image"]', 'content', image);
+    setMetaTag('meta[property="og:type"]', 'content', type);
+    setMetaTag('meta[property="og:url"]', 'content', url);
+    setMetaTag('link[rel="canonical"]', 'href', url);
   }, [title, description, image, type, location.pathname]);
 
   return null;

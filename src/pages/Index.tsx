@@ -134,14 +134,17 @@ const Index = () => {
     },
   ];
 
-  const featuredBlogs = [
-    { slug: 'cost-of-security-services-maharashtra', title: 'Cost of security services in Maharashtra' },
-    { slug: 'how-to-choose-security-agency', title: 'How to choose the right security agency' },
-    { slug: 'housekeeping-checklist-for-companies', title: 'Housekeeping checklist for companies' },
-  ].map((item) => {
-    const post = blogPosts.find((entry) => entry.slug === item.slug);
+  const featuredBlogSlugs = [
+    'cost-of-security-services-maharashtra',
+    'how-to-choose-security-agency',
+    'housekeeping-checklist-for-companies',
+  ];
+
+  const featuredBlogs = featuredBlogSlugs.map((slug) => {
+    const post = blogPosts.find((entry) => entry.slug === slug);
     return {
-      ...item,
+      slug,
+      title: post?.title ?? '',
       excerpt: post?.excerpt ?? '',
       image: post?.image ?? securityImg,
     };
@@ -469,7 +472,7 @@ const Index = () => {
                     to={`/blog/${post.slug}`}
                     className="mt-5 inline-flex items-center gap-2 text-primary-foreground font-semibold"
                   >
-                    Read More
+                    अधिक वाचा
                     <span className="inline-flex items-center transition-transform duration-300 group-hover:translate-x-1">
                       <ArrowRight className="w-4 h-4" />
                     </span>
