@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import {
-  ArrowRight,
   CheckCircle,
   ChevronLeft,
   ChevronRight,
@@ -146,6 +145,8 @@ const Index = () => {
       slug,
       title: post?.title ?? '',
       excerpt: post?.excerpt ?? '',
+      date: post?.date ?? '',
+      tags: post?.tags ?? [],
       image: post?.image ?? securityImg,
     };
   });
@@ -449,35 +450,41 @@ const Index = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
             variants={stagger}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           >
             {featuredBlogs.map((post) => (
-              <motion.article
-                key={post.slug}
-                variants={fadeUp}
-                className="group relative overflow-hidden rounded-3xl min-h-[380px] border border-border/60 shadow-[0_18px_56px_-34px_rgba(15,23,42,0.45)]"
-              >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/92 via-[#0A192F]/45 to-[#0A192F]/20" />
-                <div className="relative z-10 h-full flex flex-col justify-end p-6">
-                  <h3 className="font-heading font-bold tracking-[-0.025em] text-2xl text-primary-foreground">
-                    {post.title}
-                  </h3>
-                  <p className="mt-3 text-primary-foreground/85 leading-7 font-medium">{post.excerpt}</p>
-                  <Link
-                    to={`/blog/${post.slug}`}
-                    className="mt-5 inline-flex items-center gap-2 text-primary-foreground font-semibold"
-                  >
-                    अधिक वाचा
-                    <span className="inline-flex items-center transition-transform duration-300 group-hover:translate-x-1">
-                      <ArrowRight className="w-4 h-4" />
-                    </span>
-                  </Link>
+              <motion.article key={post.slug} variants={fadeUp} className="group h-full bg-card border border-border rounded-3xl overflow-hidden shadow-lg flex flex-col">
+                <div className="relative aspect-video bg-slate-100">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    loading="lazy"
+                    decoding="async"
+                    className="h-full w-full object-cover object-top"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/20 to-transparent" />
+                  <div className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-foreground">
+                    {post.date}
+                  </div>
                 </div>
+                <div className="p-6 flex flex-col flex-1">
+                  <div className="flex flex-wrap gap-2 text-xs text-muted-foreground mb-4">
+                    {post.tags.map((tag) => (
+                      <span key={tag} className="px-2 py-1 rounded-full bg-muted/80">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <h3 className="font-heading text-xl font-bold text-foreground mb-2 min-h-[56px] leading-7">{post.title}</h3>
+                  <p className="text-sm text-muted-foreground mb-5 min-h-[72px] leading-6">{post.excerpt}</p>
+                  <div className="mt-auto flex items-center justify-between text-xs text-muted-foreground">
+                    <span>वाचन वेळ: ४ मिनिटे</span>
+                    <Link to={`/blog/${post.slug}`} className="text-accent font-semibold hover:underline">
+                      अधिक वाचा
+                    </Link>
+                  </div>
+                </div>
+                <div className="h-1 w-full bg-gradient-to-r from-emerald-400/60 via-accent/70 to-emerald-400/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </motion.article>
             ))}
           </motion.div>
@@ -517,3 +524,4 @@ const Index = () => {
 };
 
 export default Index;
+
