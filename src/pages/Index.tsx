@@ -16,6 +16,8 @@ import { useCounter } from '@/hooks/useCounter';
 import Layout from '@/components/Layout';
 import Seo from '@/components/Seo';
 import heroImg from '@/assets/banner.png';
+import heroImgAlt1 from '@/assets/banner1.png';
+import heroImgAlt2 from '@/assets/banner2.png';
 import securityImg from '@/assets/Gallery/security4.webp';
 import housekeepingImg from '@/assets/Gallery/housekeeping3.jpeg';
 import bodyguardShowcaseImg from '@/assets/Bodyguard-image.png';
@@ -48,8 +50,18 @@ const stagger = {
 const Index = () => {
   const { t } = useLanguage();
   useScrollAnimation({ blur: true });
+  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonialCount = 9;
+  const heroSlides = [heroImg, heroImgAlt1, heroImgAlt2];
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
+    }, 4500);
+
+    return () => window.clearInterval(timer);
+  }, [heroSlides.length]);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -159,14 +171,23 @@ const Index = () => {
       />
 
       <section className="relative min-h-screen flex items-center">
-        <img
-          src={heroImg}
-          alt="VM Star Security Team"
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
-        />
+        <div className="absolute inset-0">
+          <AnimatePresence mode="wait">
+            <motion.img
+              key={heroSlides[activeHeroSlide]}
+              src={heroSlides[activeHeroSlide]}
+              alt="VM Star Security Team"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+              className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7, ease: 'easeInOut' }}
+            />
+          </AnimatePresence>
+        </div>
         <div className="absolute inset-0 hero-overlay" />
         <div className="relative z-10 container-custom px-4 lg:px-8 py-32">
           <div className="max-w-3xl fade-up">
@@ -185,6 +206,17 @@ const Index = () => {
               </Link>
             </div>
           </div>
+        </div>
+        <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide}
+              type="button"
+              onClick={() => setActiveHeroSlide(index)}
+              className={`h-2.5 rounded-full transition-all ${index === activeHeroSlide ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/70'}`}
+              aria-label={`Go to banner slide ${index + 1}`}
+            />
+          ))}
         </div>
       </section>
 
