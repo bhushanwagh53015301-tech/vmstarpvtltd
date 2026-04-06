@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import vmLogo from '@/assets/Logo.svg';
+import mobileLogo from '@/assets/mobile-logo.svg';
 import brochurePdf from '@/assets/VM Star Updated brochure.pdf';
 import { serviceCategories } from '@/lib/serviceCategories';
 
@@ -159,7 +160,7 @@ const Header = () => {
       >
         <Link to="/" className={`flex items-center gap-2 ${isHome ? 'ml-0 lg:hidden' : 'ml-0 md:ml-6 lg:ml-10'}`}>
           <img
-            src={vmLogo}
+            src={mobileLogo}
             alt="VM Star Private Limited"
             className="h-24 sm:h-28 md:h-[100px] lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
           />
