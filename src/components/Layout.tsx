@@ -12,9 +12,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const isHome = pathname === '/';
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="mobile-webapp-shell min-h-screen flex flex-col">
       <Header />
-      <main className={`flex-1 pb-20 md:pb-0 ${isHome ? '' : 'pt-24 lg:pt-36'}`}>{children}</main>
+      <main className={`flex-1 pb-24 md:pb-0 ${isHome ? '' : 'pt-24 lg:pt-36'}`}>{children}</main>
       <StrongCta />
       <Footer />
       <WhatsAppButton />

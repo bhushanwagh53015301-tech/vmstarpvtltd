@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin, Facebook } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import vmLogo from '@/assets/vm-logo.png';
+import vmLogo from '@/assets/Logo.svg';
 
 const Footer = () => {
   const { t } = useLanguage();
 
   return (
-    <footer className="gradient-navy text-primary-foreground">
+    <footer id="site-footer" className="gradient-navy text-primary-foreground">
       <div className="container-custom section-padding pb-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand */}

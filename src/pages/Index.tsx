@@ -15,9 +15,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useCounter } from '@/hooks/useCounter';
 import Layout from '@/components/Layout';
 import Seo from '@/components/Seo';
-import heroImg from '@/assets/banner.png';
-import heroImgAlt1 from '@/assets/banner1.png';
-import heroImgAlt2 from '@/assets/banner2.png';
+import securityContactBanner from '@/assets/security-services-contact-banner.png';
+import housekeepingGuidelinesBanner from '@/assets/housekeeping-service-guidelines-manual.png';
 import securityImg from '@/assets/Gallery/security4.webp';
 import housekeepingImg from '@/assets/Gallery/housekeeping3.jpeg';
 import bodyguardShowcaseImg from '@/assets/Bodyguard-image.png';
@@ -53,7 +52,7 @@ const Index = () => {
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonialCount = 9;
-  const heroSlides = [heroImg, heroImgAlt1, heroImgAlt2];
+  const heroSlides = [securityContactBanner, housekeepingGuidelinesBanner];
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -188,25 +187,6 @@ const Index = () => {
             />
           </AnimatePresence>
         </div>
-        <div className="absolute inset-0 hero-overlay" />
-        <div className="relative z-10 container-custom px-4 lg:px-8 py-32">
-          <div className="max-w-3xl fade-up">
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold tracking-[-0.025em] text-primary-foreground leading-tight mb-6">
-              The Power of Connecting People
-            </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 max-w-2xl font-medium">
-              {t.hero.subheadline}
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link to="/contact" className="px-8 py-3.5 rounded-lg gradient-accent text-accent-foreground font-semibold btn-glow transition-transform hover:scale-105 shadow-lg hover:shadow-xl">
-                {t.hero.cta1}
-              </Link>
-              <Link to="/services" className="px-8 py-3.5 rounded-lg border-2 border-primary-foreground/40 text-primary-foreground font-semibold hover:bg-primary-foreground/10 transition-colors">
-                {t.hero.cta2}
-              </Link>
-            </div>
-          </div>
-        </div>
         <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
           {heroSlides.map((slide, index) => (
             <button
@@ -220,7 +200,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="gradient-navy py-16">
+      <section className="gradient-navy py-8 md:py-16">
         <div className="container-custom px-4 grid grid-cols-2 md:grid-cols-4 gap-8 stagger-grid animate-on-scroll">
           <StatCounter end={10} suffix="+" label={t.stats.years} />
           <StatCounter end={915} suffix="+" label={t.stats.workforce} />
@@ -296,7 +276,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-24 gradient-navy">
+      <section className="px-4 py-8 md:py-24 gradient-navy">
         <div className="container-custom">
           <div className="text-center mb-14">
             <h2 className="font-heading font-bold tracking-[-0.025em] text-3xl md:text-4xl text-primary-foreground mb-4">
@@ -399,7 +379,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-24">
+      <section className="px-4 py-8 md:py-24">
         <div className="container-custom">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.3em] text-accent font-semibold">Testimonials</p>
@@ -469,7 +449,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-24 bg-card">
+      <section className="px-4 py-8 md:py-24 bg-card">
         <div className="container-custom">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.3em] text-accent font-semibold">Insights</p>
@@ -523,7 +503,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-24 gradient-navy">
+      <section className="px-4 py-8 md:py-24 gradient-navy">
         <div className="container-custom">
           <div className="rounded-3xl border border-white/20 bg-white/10 backdrop-blur-lg p-8 md:p-10">
             <div className="max-w-4xl mx-auto text-center">

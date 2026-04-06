@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
-import vmLogo from '@/assets/vm-logo.svg';
+import vmLogo from '@/assets/Logo.svg';
 import brochurePdf from '@/assets/VM Star Updated brochure.pdf';
 import { serviceCategories } from '@/lib/serviceCategories';
 
@@ -144,9 +144,9 @@ const Header = () => {
 
   return (
     <header className={`fixed ${isHome ? 'top-3' : 'top-0'} left-0 right-0 z-50 transition-all duration-300 ${!isHome ? 'bg-white shadow-md border-b border-border/70' : ''} ${isScrolled && !isHome ? 'bg-white shadow-lg border-b border-border/70' : ''} ${isHome && !isScrolled ? 'bg-transparent' : ''}`}>
-      <div className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${isHome ? 'mx-auto max-w-[92%] sm:max-w-6xl rounded-2xl lg:rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/70 relative py-2 sm:py-3 px-5 sm:px-6 lg:px-8' : ''}`}>
-        <Link to="/" className={`flex items-center gap-2 ${isHome ? 'absolute left-1/2 -translate-x-1/2 lg:hidden' : 'ml-0 md:ml-6 lg:ml-10'}`}>
-          <img src={vmLogo} alt="VM Star Private Limited" className="h-16 sm:h-20 md:h-[96px] lg:h-[112px] w-auto" />
+      <div className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${isHome ? 'mx-auto max-w-[92%] sm:max-w-6xl rounded-2xl lg:rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/70 relative py-4 sm:py-5 px-5 sm:px-6 lg:px-8' : ''}`}>
+        <Link to="/" className={`flex items-center gap-2 ${isHome ? 'ml-0 lg:hidden' : 'ml-0 md:ml-6 lg:ml-10'}`}>
+          <img src={vmLogo} alt="VM Star Private Limited" className="h-[88px] sm:h-20 md:h-[96px] lg:h-[112px] w-auto" />
         </Link>
 
         <nav className={`hidden lg:flex items-center gap-1 ${isHome ? 'w-full grid grid-cols-[1fr_auto_1fr] items-center' : ''}`}>
