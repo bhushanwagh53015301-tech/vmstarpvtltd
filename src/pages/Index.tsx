@@ -15,8 +15,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useCounter } from '@/hooks/useCounter';
 import Layout from '@/components/Layout';
 import Seo from '@/components/Seo';
-import securityContactBanner from '@/assets/security-services-contact-banner.png';
-import housekeepingGuidelinesBanner from '@/assets/housekeeping-service-guidelines-manual.png';
+import securityFacebookBanner from '@/assets/Navy and Yellow Modern Security Guard Service Facebook Cover (1200 x 600 px).png';
+import darkBlueOrangeBanner from '@/assets/Dark Blue and Orange Modern Security Guard Services Facebook Cover (1200 x 600 px).png';
 import securityImg from '@/assets/Gallery/security4.webp';
 import housekeepingImg from '@/assets/Gallery/housekeeping3.jpeg';
 import bodyguardShowcaseImg from '@/assets/Bodyguard-image.png';
@@ -52,13 +52,12 @@ const Index = () => {
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [activeTestimonial, setActiveTestimonial] = useState(0);
   const testimonialCount = 9;
-  const heroSlides = [securityContactBanner, housekeepingGuidelinesBanner];
+  const heroSlides = [securityFacebookBanner, darkBlueOrangeBanner];
 
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
     }, 4500);
-
     return () => window.clearInterval(timer);
   }, [heroSlides.length]);
 
@@ -169,31 +168,28 @@ const Index = () => {
         description="PSARA licensed, ISO certified security guard, housekeeping, manpower and bouncer services across Maharashtra. Trusted by commercial and residential clients."
       />
 
-      <section className="relative min-h-screen flex items-center">
-        <div className="absolute inset-0">
-          <AnimatePresence mode="wait">
-            <motion.img
-              key={heroSlides[activeHeroSlide]}
-              src={heroSlides[activeHeroSlide]}
-              alt="VM Star Security Team"
-              loading="eager"
-              decoding="async"
-              fetchPriority="high"
-              className="absolute inset-0 w-full h-full object-cover object-[center_30%]"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.7, ease: 'easeInOut' }}
-            />
-          </AnimatePresence>
-        </div>
-        <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
+      <section className="relative w-full aspect-[2/1] mt-20 md:mt-0 overflow-hidden bg-[#082b63]">
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={heroSlides[activeHeroSlide]}
+            src={heroSlides[activeHeroSlide]}
+            alt="VM Star banner"
+            loading="eager"
+            decoding="async"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeInOut' }}
+          />
+        </AnimatePresence>
+        <div className="absolute bottom-4 left-1/2 z-20 -translate-x-1/2 flex items-center gap-2">
           {heroSlides.map((slide, index) => (
             <button
               key={slide}
               type="button"
               onClick={() => setActiveHeroSlide(index)}
-              className={`h-2.5 rounded-full transition-all ${index === activeHeroSlide ? 'w-8 bg-white' : 'w-2.5 bg-white/50 hover:bg-white/70'}`}
+              className={`h-2.5 rounded-full transition-all ${index === activeHeroSlide ? 'w-8 bg-white' : 'w-2.5 bg-white/55 hover:bg-white/80'}`}
               aria-label={`Go to banner slide ${index + 1}`}
             />
           ))}
