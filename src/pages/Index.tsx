@@ -361,7 +361,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="section-padding">
+      <section className="pt-10 pb-4 md:pt-14 md:pb-8">
         <div className="container-custom text-center animate-on-scroll">
           <h2 className="font-heading text-3xl md:text-4xl font-bold tracking-[-0.025em] text-foreground mb-8">{t.locations.title}</h2>
           <div className="flex flex-wrap justify-center gap-4 stagger-grid animate-on-scroll">
@@ -375,7 +375,7 @@ const Index = () => {
         </div>
       </section>
 
-      <section className="px-4 py-8 md:py-24">
+      <section className="px-4 pt-6 pb-8 md:pt-10 md:pb-20">
         <div className="container-custom">
           <div className="text-center mb-12">
             <p className="text-xs uppercase tracking-[0.3em] text-accent font-semibold">Testimonials</p>

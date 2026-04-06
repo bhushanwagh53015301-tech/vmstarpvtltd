@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import vmLogo from '@/assets/Logo.svg';
-import mobileLogo from '@/assets/logo.png';
 import brochurePdf from '@/assets/VM Star Updated brochure.pdf';
 import { serviceCategories } from '@/lib/serviceCategories';
 
@@ -144,10 +143,26 @@ const Header = () => {
   };
 
   return (
-    <header className={`fixed ${isHome ? 'top-3' : 'top-0'} left-0 right-0 z-50 transition-all duration-300 ${!isHome ? 'bg-white shadow-md border-b border-border/70' : ''} ${isScrolled && !isHome ? 'bg-white shadow-lg border-b border-border/70' : ''} ${isHome && !isScrolled ? 'bg-transparent' : ''}`}>
-      <div className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${isHome ? 'mx-auto max-w-[92%] sm:max-w-6xl rounded-2xl lg:rounded-full bg-card/90 backdrop-blur-md shadow-lg border border-border/70 relative py-4 sm:py-5 px-5 sm:px-6 lg:px-8' : ''}`}>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isHome
+          ? 'bg-white shadow-md border-b border-border/70 lg:bg-transparent lg:shadow-none lg:border-b-0'
+          : 'bg-white shadow-md border-b border-border/70'
+      } ${isScrolled && !isHome ? 'bg-white shadow-lg border-b border-border/70' : ''}`}
+    >
+      <div
+        className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${
+          isHome
+            ? 'lg:mx-auto lg:max-w-[92%] lg:rounded-full lg:bg-card/90 lg:backdrop-blur-md lg:shadow-lg lg:border lg:border-border/70 lg:relative lg:py-4 lg:px-8'
+            : ''
+        }`}
+      >
         <Link to="/" className={`flex items-center gap-2 ${isHome ? 'ml-0 lg:hidden' : 'ml-0 md:ml-6 lg:ml-10'}`}>
-          <img src={mobileLogo} alt="VM Star Private Limited" className="h-20 sm:h-24 md:h-[96px] lg:h-[112px] w-auto object-contain" />
+          <img
+            src={vmLogo}
+            alt="VM Star Private Limited"
+            className="h-24 sm:h-28 md:h-[100px] lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
+          />
         </Link>
 
         <nav className={`hidden lg:flex items-center gap-1 ${isHome ? 'w-full grid grid-cols-[1fr_auto_1fr] items-center' : ''}`}>
@@ -156,7 +171,11 @@ const Header = () => {
           </div>
           {isHome && (
             <Link to="/" className="flex items-center justify-center">
-              <img src={vmLogo} alt="VM Star Private Limited" className="h-20 md:h-[100px] lg:h-[112px] w-auto" />
+              <img
+                src={vmLogo}
+                alt="VM Star Private Limited"
+                className="h-[88px] md:h-[104px] lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
+              />
             </Link>
           )}
           <div className={`flex items-center gap-1 ${isHome ? 'justify-end' : ''}`}>
