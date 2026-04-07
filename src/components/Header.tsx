@@ -3,7 +3,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useLanguage } from '@/hooks/useLanguage';
 import vmLogo from '@/assets/Logo.svg';
-import mobileLogo from '@/assets/mobile-logo.svg';
 import brochurePdf from '@/assets/VM Star Updated brochure.pdf';
 import { serviceCategories } from '@/lib/serviceCategories';
 
@@ -154,20 +153,20 @@ const Header = () => {
       <div
         className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${
           isHome
-            ? 'lg:mx-auto lg:max-w-[92%] lg:rounded-full lg:bg-card/90 lg:backdrop-blur-md lg:shadow-lg lg:border lg:border-border/70 lg:relative lg:py-4 lg:px-8'
+            ? 'lg:mx-auto lg:max-w-[84%] xl:max-w-[80%] lg:justify-center lg:rounded-full lg:bg-card/90 lg:backdrop-blur-md lg:shadow-lg lg:border lg:border-border/70 lg:relative lg:py-4 lg:px-8'
             : ''
         }`}
       >
         <Link to="/" className={`flex items-center gap-2 ${isHome ? 'ml-0 lg:hidden' : 'ml-0 md:ml-6 lg:ml-10'}`}>
           <img
-            src={mobileLogo}
+            src={vmLogo}
             alt="VM Star Private Limited"
             className="h-24 sm:h-28 md:h-[100px] lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
           />
         </Link>
 
-        <nav className={`hidden lg:flex items-center gap-1 ${isHome ? 'w-full grid grid-cols-[1fr_auto_1fr] items-center' : ''}`}>
-          <div className={`flex items-center gap-1 ${isHome ? 'justify-start pl-16' : ''}`}>
+        <nav className={`hidden lg:flex items-center gap-1 ${isHome ? 'grid grid-cols-[auto_auto_auto] items-center gap-8 xl:gap-10' : ''}`}>
+          <div className={`flex items-center gap-1 ${isHome ? 'justify-end' : ''}`}>
             {(isHome ? leftLinks : navLinks).map((link) => renderDesktopNavLink(link))}
           </div>
           {isHome && (
@@ -179,7 +178,7 @@ const Header = () => {
               />
             </Link>
           )}
-          <div className={`flex items-center gap-1 ${isHome ? 'justify-end' : ''}`}>
+          <div className={`flex items-center gap-1 ${isHome ? 'justify-start' : ''}`}>
             {isHome && rightLinks.map((link) => renderDesktopNavLink(link))}
             <a
               href={brochurePdf}

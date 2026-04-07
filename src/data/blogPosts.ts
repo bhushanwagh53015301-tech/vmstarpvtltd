@@ -114,4 +114,52 @@ export const blogPosts: BlogPost[] = [
       'VM Star मध्ये नाईट शिफ्टसाठी आम्ही पर्यवेक्षण वारंवारता, डिजिटल लॉगिंग आणि घटना प्रतिसाद चेकलिस्ट वापरतो. यामुळे रात्रीची सुरक्षा अधिक शिस्तबद्ध, मोजता येण्याजोगी आणि विश्वासार्ह होते.',
     ],
   },
+  {
+    slug: 'cost-of-security-services-in-maharashtra',
+    title: 'Cost of Security Services in Maharashtra: Key Pricing Factors',
+    date: '2026-03-25',
+    excerpt:
+      'Understand what truly affects security service pricing, from compliance and staffing to supervision and site risk.',
+    tags: ['Security', 'Pricing', 'Maharashtra'],
+    image: new URL('../assets/blog/Cost of Security Services in Maharashtra_ Key Pricing Factors.png', import.meta.url).toString(),
+    content: [
+      'Security pricing should never be judged only by the monthly invoice amount. A reliable quote must include wages, statutory benefits, supervision overhead, and service quality commitments.',
+      'Staffing pattern directly impacts cost. Site size, shift structure, weekly offs, relievers, and post-wise deployment all change the final number significantly.',
+      'Legal compliance is non-negotiable. PF, ESI (where applicable), bonus, and leave components must be transparent in the proposal to avoid future disputes and compliance risk.',
+      'Training and background verification improve reliability but also affect operating cost. Agencies that invest in induction, drills, and supervisory checks usually deliver more stable performance.',
+      'A practical approach is to compare value, not just price. Choose a provider that can prove service quality, incident response readiness, and audit-friendly documentation.',
+    ],
+  },
+  {
+    slug: 'how-to-choose-security-agency-for-your-business',
+    title: 'How to Choose the Right Security Agency for Your Business',
+    date: '2026-03-27',
+    excerpt:
+      'A practical checklist to evaluate licenses, hiring standards, training quality, and reporting systems before finalizing a security partner.',
+    tags: ['Security Agency', 'Compliance', 'Vendor Selection'],
+    image: new URL('../assets/blog/How to Choose the Right Security Agency for Your Business.png', import.meta.url).toString(),
+    content: [
+      'Start by verifying legal credentials. Check PSARA validity, operating scope, and whether the agency can share up-to-date compliance documents without delay.',
+      'Review recruitment and verification processes in detail. Ask how guards are screened, how quickly relievers are deployed, and how absenteeism is managed.',
+      'Assess the training framework before onboarding. A strong agency should have structured modules for access control, emergency handling, communication, and incident reporting.',
+      'Supervision quality is a major differentiator. Confirm site-visit frequency, escalation matrix, and the format of daily and monthly reports you will receive.',
+      'Treat the selection as a long-term partnership decision. The best fit balances compliance, operational discipline, and transparent communication.',
+    ],
+  },
+  {
+    slug: 'housekeeping-checklist-for-companies',
+    title: 'Housekeeping Checklist for Companies: A Clean and Safe Workplace Guide',
+    date: '2026-03-29',
+    excerpt:
+      'Use this housekeeping checklist to improve hygiene, safety, workflow efficiency, and compliance across offices and industrial spaces.',
+    tags: ['Housekeeping', 'Workplace Safety', 'Operations'],
+    image: new URL('../assets/blog/Housekeeping Checklist for Companies A Clean and Safe Workplace Guide.png', import.meta.url).toString(),
+    content: [
+      'Good housekeeping is more than cleanliness. It supports safety, improves employee experience, and reduces avoidable operational disruptions.',
+      'Define zone-wise cleaning schedules for workstations, restrooms, cafeteria areas, meeting spaces, and high-touch surfaces. Frequency should match footfall and risk exposure.',
+      'Use standard operating checklists for consumables, waste segregation, spill handling, and deep-clean tasks. Clear ownership prevents missed routines.',
+      'Link housekeeping with safety controls. Keep aisles clear, mark storage zones, remove trip hazards, and ensure chemical handling instructions are followed consistently.',
+      'Track performance with inspection logs and corrective action timelines. Regular audits help maintain standards and make vendor reviews objective.',
+    ],
+  },
 ];

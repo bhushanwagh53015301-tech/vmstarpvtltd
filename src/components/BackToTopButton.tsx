@@ -31,7 +31,7 @@ const BackToTopButton = () => {
     <button
       type="button"
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      className={`fixed right-4 bottom-[calc(6.5rem+env(safe-area-inset-bottom))] sm:right-6 md:bottom-6 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full gradient-navy text-primary-foreground shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 ${
+      className={`fixed right-4 bottom-[calc(10rem+env(safe-area-inset-bottom))] sm:right-6 md:bottom-24 z-40 w-11 h-11 sm:w-12 sm:h-12 rounded-full gradient-navy text-primary-foreground shadow-lg flex items-center justify-center transition-all duration-300 hover:scale-110 ${
         isVisible && !isNearFooter ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-3 pointer-events-none'
       }`}
       aria-label="Back to top"

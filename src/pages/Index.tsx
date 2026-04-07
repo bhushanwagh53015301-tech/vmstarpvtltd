@@ -492,10 +492,18 @@ const Index = () => {
                     </Link>
                   </div>
                 </div>
-                <div className="h-1 w-full bg-gradient-to-r from-emerald-400/60 via-accent/70 to-emerald-400/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="h-1 w-full bg-gradient-to-r from-emerald-400/60 via-accent/70 to-emerald-400/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </motion.article>
             ))}
           </motion.div>
+          <div className="mt-10 flex justify-center">
+            <Link
+              to="/blog"
+              className="inline-flex items-center justify-center rounded-lg gradient-accent px-6 py-3 text-sm font-semibold text-accent-foreground shadow-[0_16px_32px_-16px_rgba(251,146,60,0.75)] transition-transform hover:scale-105"
+            >
+              Read More Blogs
+            </Link>
+          </div>
         </div>
       </section>
 
