@@ -14,7 +14,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="mobile-webapp-shell min-h-screen flex flex-col">
       <Header />
-      <main className={`flex-1 pb-20 md:pb-0 ${isHome ? '' : 'pt-24 lg:pt-36'}`}>{children}</main>
+      <main className={`flex-1 pb-20 md:pb-0 ${isHome ? '' : 'pt-20 lg:pt-36'}`}>{children}</main>
       <StrongCta />
       <Footer />
       <MobileBottomNav />

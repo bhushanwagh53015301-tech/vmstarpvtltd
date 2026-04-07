@@ -53,8 +53,8 @@ const About = () => {
 
   return (
     <Layout>
-      <section className="gradient-navy pt-32 pb-20 px-4">
-        <div className="container-custom">
+      <section className="gradient-navy px-4">
+        <div className="container-custom min-h-[260px] md:min-h-[300px] py-10 md:py-14 flex flex-col justify-center">
           <h1 className="text-center font-heading text-4xl md:text-5xl font-bold text-primary-foreground mb-4 animate-fade-in">
             About Us
           </h1>
