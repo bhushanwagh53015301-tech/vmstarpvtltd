@@ -151,7 +151,7 @@ const Header = () => {
       } ${isScrolled && !isHome ? 'bg-white shadow-lg border-b border-border/70' : ''}`}
     >
       <div
-        className={`container-custom flex items-center justify-between px-4 py-3 lg:px-8 ${
+        className={`container-custom flex items-center justify-between px-3 py-3 sm:px-4 sm:py-3 lg:px-8 ${
           isHome
             ? 'lg:mx-auto lg:max-w-[84%] xl:max-w-[80%] lg:justify-center lg:rounded-full lg:bg-card/90 lg:backdrop-blur-md lg:shadow-lg lg:border lg:border-border/70 lg:relative lg:py-4 lg:px-8'
             : ''
@@ -161,7 +161,7 @@ const Header = () => {
           <img
             src={vmLogo}
             alt="VM Star Private Limited"
-            className="h-24 sm:h-28 md:h-[100px] lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
+            className="h-14 sm:h-16 md:h-14 lg:h-[116px] w-auto object-contain contrast-125 saturate-150 brightness-105 [filter:drop-shadow(0_4px_8px_rgba(2,6,23,0.28))]"
           />
         </Link>
 

@@ -5,6 +5,7 @@ import Footer from './Footer';
 import WhatsAppButton from './WhatsAppButton';
 import BackToTopButton from './BackToTopButton';
 import StrongCta from './StrongCta';
+import MobileBottomNav from './MobileBottomNav';
 
 const Layout = ({ children }: { children: ReactNode }) => {
   const { pathname } = useLocation();
@@ -13,9 +14,10 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="mobile-webapp-shell min-h-screen flex flex-col">
       <Header />
-      <main className={`flex-1 ${isHome ? '' : 'pt-24 lg:pt-36'}`}>{children}</main>
+      <main className={`flex-1 pb-20 md:pb-0 ${isHome ? '' : 'pt-24 lg:pt-36'}`}>{children}</main>
       <StrongCta />
       <Footer />
+      <MobileBottomNav />
       <WhatsAppButton />
       <BackToTopButton />
     </div>
